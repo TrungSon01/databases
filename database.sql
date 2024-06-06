@@ -55,7 +55,7 @@ CREATE TABLE PhieuNK (
 CREATE TABLE PhieuXK (
     ID_XK INT,
     ID_NV INT,
-    NgayNK DATE,
+    NgayXK DATE,
     PRIMARY KEY (ID_XK),
     FOREIGN KEY (ID_NV) REFERENCES NhanVienKho(ID_NV)
 );
@@ -66,6 +66,16 @@ CREATE TABLE Ban (
     Vitri VARCHAR(250),
     Trangthai VARCHAR(250),
     PRIMARY KEY (ID_Ban)
+);
+
+CREATE TABLE Voucher (
+    Code_Voucher VARCHAR(210),
+    Mota VARCHAR(250),
+    Phantram DECIMAL(3,0),
+    LoaiMA VARCHAR(250),
+    SoLuong INT,
+    Diem DECIMAL(10,0),
+    PRIMARY KEY (Code_Voucher)
 );
 
 CREATE TABLE HoaDon (
@@ -81,7 +91,8 @@ CREATE TABLE HoaDon (
     PRIMARY KEY (ID_HoaDon),
     FOREIGN KEY (ID_NV) REFERENCES NhanVienBan(ID_NV),
     FOREIGN KEY (ID_KH) REFERENCES KhachHang(ID_KH),
-    FOREIGN KEY (ID_Ban) REFERENCES Ban(ID_Ban)
+    FOREIGN KEY (ID_Ban) REFERENCES Ban(ID_Ban),
+    FOREIGN KEY (Code_Voucher) REFERENCES Voucher(Code_Voucher)
 );
 
 CREATE TABLE MonAn (
@@ -101,18 +112,6 @@ CREATE TABLE CTHD (
     PRIMARY KEY (ID_HoaDon, ID_MonAn),
     FOREIGN KEY (ID_HoaDon) REFERENCES HoaDon(ID_HoaDon),
     FOREIGN KEY (ID_MonAn) REFERENCES MonAn(ID_MonAn)
-);
-
-
-CREATE TABLE Voucher (
-    Code_Voucher VARCHAR(210),
-    Mota VARCHAR(250),
-    Phantram DECIMAL(3,0),
-    LoaiMA VARCHAR(250),
-    SoLuong INT,
-    Diem DECIMAL(10,0),
-    PRIMARY KEY (Code_Voucher),
-    FOREIGN KEY (Code_Voucher) REFERENCES HoaDon(Code_Voucher)
 );
 
 CREATE TABLE NguyenLieu (
